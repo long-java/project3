@@ -78,11 +78,11 @@ jobs:
           keys: [fontend-build]
       # Your job code here
       - run:
-        name: test-frontend-name
-        command: |
-          cd frontend
-          npm install
-          npm run test
+          name: test-frontend-name
+          command: |
+            cd frontend
+            npm install
+            npm run test
                 
   test-backend:
     docker:
@@ -95,11 +95,11 @@ jobs:
           keys: [backend-build]
       # Your job code here
       - run:
-        name: test-backend-name
-        command: |
-          cd frontend
-          npm install
-          npm run test
+          name: test-backend-name
+          command: |
+            cd frontend
+            npm install
+            npm run test
             
 
 workflows:
