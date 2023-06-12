@@ -132,7 +132,7 @@ jobs:
       - run:
         name: scan-backend-name
         command: |
-          cd frontend
+          cd backend
           npm install
           ## npm install oauth-sign@^0.9.0
           npm audit --audit-level=critical
@@ -147,3 +147,7 @@ workflows:
           requires: [build-frontend]
       - test-backend:
           requires: [build-backend]
+      - scan-backend:
+          requires: [build-backend]
+      - scan-frontend:
+          requires: [build-frontend]
