@@ -148,6 +148,11 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
+      # fix ERROR: tar utility is not present in this image but it is required. Please install it to have workflow workspace capability.
+      - run:
+          name: Install tar utility
+          command: |
+            yum install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
