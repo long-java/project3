@@ -395,6 +395,10 @@ jobs:
       # Checkout code from git
       - checkout
       # attach workspace
+      - run:
+          name: Install dependencies
+          command: |
+            yum install tar gzip -y
       - attach_workspace:
           at: ~/
       - run:
@@ -433,6 +437,10 @@ jobs:
       # Checkout code from git
       - checkout
       # attach workspace
+      - run:
+          name: Install dependencies
+          command: |
+            yum install tar gzip -y
       - attach_workspace:
           at: ~/
       - run:
