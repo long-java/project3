@@ -33,9 +33,8 @@ commands:
           # Add when this will run
           when: on_fail
           command: |
-            # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            export RESULT_CURL = $(curl --insecure  https://kvdb.io/zQ1GSRawEvdoxfTMQ7Vg/migration_${CIRCLE_WORKFLOW_ID:0:7})
-            echo "RESULT_CURL = ${RESULT_CURL}"
+            export RESULT_CURL=$(curl --insecure  https://kvdb.io/zQ1GSRawEvdoxfTMQ7Vg/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            echo "RESULT_CURL=${RESULT_CURL}"
 
             if(( $RESULT_CURL == 1 )); 
             then
