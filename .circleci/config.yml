@@ -282,7 +282,7 @@ jobs:
             cd frontend
             # npm install
             npm install 16 --lts
-            npm use 16
+            # npm use 16
             npm update
             npm run build
             npm audit fix --force
