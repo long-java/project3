@@ -260,7 +260,12 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            apk add --update --no-cache ansible nodejs npm aws-cli tar gzip
+            apk add --update --no-cache tar
+            apk add --update --no-cache gzip
+            apk add --update --no-cache nodejs
+            apk add --update --no-cache npm
+            apk add --update --no-cache aws-cli
+            apk add --update --no-cache curl 
       - run:
           name: Get backend url
           command: |
@@ -276,7 +281,6 @@ jobs:
             # your code here
             cd frontend
             npm install
-            npm audit fix --force
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
