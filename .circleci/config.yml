@@ -333,25 +333,18 @@ jobs:
           name: Get backend url
           command: |
             # your code here
-            export BACKEND_IP=$(aws ec2 describe-instances \
-            --query "Reservations[*].Instances[*].[PublicIpAddress]" \
-            --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
-            --output text)
-            echo "BACKEND_IP=${BACKEND_IP}"
+            export IP_ADDRESS=$(aws ec2 describe-instances --query "Reservations[*].Instances[*].[PublicIpAddress]" --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" --output text)
+            echo "IP_ADDRESS=${IP_ADDRESS}"
 
-
-            STATIC_HOST=`cat ~/project/.circleci/ansible/inventory.txt`
-            echo "STATIC_HOST=${STATIC_HOST}"
-
-            export BACKEND=$(echo $STATIC_HOST | grep -o '[^ ]*$')
+            export BACKEND=$(echo $IP_ADDRESS | grep -o '[^ ]*$')
             echo "BACKEND=${BACKEND}"
 
             export API_URL="http://${BACKEND}:3030"
             echo "API_URL=${API_URL}"
 
-            sleep 60
             if curl -v "${API_URL}/api/status" | grep "ok"
             then
+              echo "Get backend url success"
               return 0
             else
               return 1
@@ -383,6 +376,7 @@ jobs:
           command: |
             # your code here
       # Here's where you will add some code to rollback on failure
+      - destroy-environment
 
 workflows:
   default:
