@@ -409,22 +409,12 @@ jobs:
       - run:
           name: Update cloudfront distribution
           command: |
-            # export old workFlowId
-            export OldWorkflowID=$(aws cloudformation \
-              list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-              --no-paginate --output text)
-            echo $OldWorkflowID >> ~/OldWorkflowID.txt
-            cat ~/OldWorkflowID.txt
-
             # deploy
             aws cloudformation deploy \
               --template-file .circleci/files/cloudfront.yml \
-              --stack-name "InitialStack-${OldWorkflowID}" \
+              --stack-name "InitialStack-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
               --tags project=udapeople
-
-            echo OldWorkflowID: "${OldWorkflowID}"
-            echo Current Worflow Id: "${CIRCLE_WORKFLOW_ID:0:7}"
       # Here's where you will add some code to rollback on failure
       - destroy-environment
 
@@ -444,10 +434,9 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Get old stack workflow id
+          name: Get old stack workflowId and Delete it
           command: |
             # your code here
-
             ## Fetch the Old workflow ID
             export OldWorkflowID=$(aws cloudformation \
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
@@ -462,7 +451,7 @@ jobs:
             echo Stack names: "${STACKS[@]}"   
 
 
-            if [[ "${CIRCLE_WORKFLOW_ID:0:7}" =~ "${OldWorkflowID}" ]]
+            if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
             then
               ## your code goes here
               echo "exist old stack, starting delete:"
