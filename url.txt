@@ -1,0 +1,9 @@
+[URL01] Github: https://github.com/long-java/project3 
+
+[URL02] S3: http://udapeople-4ac1e8f.s3-website-us-east-1.amazonaws.com
+
+[URL03] CloudFront: d346jldr598h5w.cloudfront.net
+
+[URL04] Check Healthy: http://54.234.197.26:3030/api/status
+
+[URL05] Prometheus Server: http://ec2-54-234-197-26.compute-1.amazonaws.com:9090/
