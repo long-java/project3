@@ -42,7 +42,7 @@ commands:
             then
               echo "--------Exception, to do revert------"
               pwd
-              cd /backend
+              cd backend
               echo "CD SUCCESS"
               npm install
               npm run migration:revert
