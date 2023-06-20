@@ -243,6 +243,7 @@ jobs:
           command: |
             cd backend
             npm install
+            echo "migration_dump is:"
             cat migrations_dump.txt
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
