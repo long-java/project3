@@ -37,12 +37,13 @@ commands:
             export RESULT_CURL=$(curl --insecure  https://kvdb.io/zQ1GSRawEvdoxfTMQ7Vg/migration_${CIRCLE_WORKFLOW_ID:0:7})
             echo "RESULT_CURL=${RESULT_CURL}"
 
-            if(( $RESULT_CURL == 1 )); 
+            if [ "$RESULT_CURL" -eq 1 ];
             then
-              echo "Exception, to do revert"
+              echo "--------Exception, to do revert------"
               cd ~/project/backend
               npm install
               npm run migration:revert
+              echo "--------Confirmed migration-revert------"
             fi
             
 jobs:
@@ -370,7 +371,7 @@ jobs:
             if curl -s ${URL_TEST} | grep "Welcome"
             then
               # Change this to 0 after the job fails
-              return 0
+              return 1
             else
               return 1
             fi
