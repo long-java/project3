@@ -25,6 +25,7 @@ commands:
     parameters:
       # Add parameter here     
     steps:
+      - checkout
       - run:
           name: Add curl to test result
           command: |
@@ -40,7 +41,7 @@ commands:
             if [ "$RESULT_CURL" -eq 1 ]
             then
               echo "--------Exception, to do revert------"
-              cd backend
+              cd ~/project/backend
               npm install
               npm run migration:revert
               echo "--------Confirmed migration-revert------"
