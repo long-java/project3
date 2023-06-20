@@ -35,9 +35,9 @@ commands:
           when: on_fail
           command: |
             export RESULT_CURL=$(curl --insecure  https://kvdb.io/zQ1GSRawEvdoxfTMQ7Vg/migration_${CIRCLE_WORKFLOW_ID:0:7})
-            echo "RESULT_CURL=${RESULT_CURL}"
+            echo $RESULT_CURL
 
-            if [ "$RESULT_CURL" -eq 1 ];
+            if [ "$RESULT_CURL" -eq 1 ]
             then
               echo "--------Exception, to do revert------"
               cd ~/project/backend
