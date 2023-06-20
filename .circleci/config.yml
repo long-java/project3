@@ -41,6 +41,7 @@ commands:
             if [ 1 -eq 1 ]
             then
               echo "--------Exception, to do revert------"
+              pwd
               cd /backend
               echo "CD SUCCESS"
               npm install
