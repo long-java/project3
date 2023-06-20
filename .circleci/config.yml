@@ -340,6 +340,7 @@ jobs:
     steps:
       # Checkout code from git
       - run:
+          exit 1
           name: Install dependencies
           command: |
             # your code here
@@ -496,10 +497,9 @@ workflows:
       #     requires: [run-migrations]
       # - deploy-backend:
       #     requires: [run-migrations]
-      # - smoke-test:
+      - smoke-test:
       #     requires: [deploy-backend, deploy-frontend]
       # - cloudfront-update:
       #     requires: [smoke-test]
       # - cleanup:
       #     requires: [cloudfront-update]
-      - revert-migrations
