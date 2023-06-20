@@ -40,7 +40,7 @@ commands:
             if [ "$RESULT_CURL" -eq 1 ]
             then
               echo "--------Exception, to do revert------"
-              cd ~/project/backend
+              cd backend
               npm install
               npm run migration:revert
               echo "--------Confirmed migration-revert------"
