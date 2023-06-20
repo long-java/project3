@@ -25,7 +25,6 @@ commands:
     parameters:
       # Add parameter here     
     steps:
-      - checkout
       - run:
           name: Add curl to test result
           command: |
@@ -42,7 +41,7 @@ commands:
             then
               echo "--------Exception, to do revert------"
               pwd
-              cd backend
+              cd $HOME/backend
               echo "CD SUCCESS"
               npm install
               npm run migration:revert
