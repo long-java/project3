@@ -42,9 +42,7 @@ commands:
             if [ 1 -eq 1 ]
             then
               echo "--------Exception, to do revert------"
-              pwd
-              ls -al
-              cd root
+              ~/project
               ls -al
               cd backend
               echo "CD SUCCESS"
