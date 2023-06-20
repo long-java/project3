@@ -340,9 +340,9 @@ jobs:
     steps:
       # Checkout code from git
       - run:
-          exit 1
           name: Install dependencies
           command: |
+            return 1
             # your code here
             apk add --update --no-cache tar gzip ansible nodejs npm aws-cli curl
       - run:
