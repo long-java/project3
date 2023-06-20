@@ -25,6 +25,8 @@ commands:
     parameters:
       # Add parameter here     
     steps:
+      - attach_workspace:
+          at: ~/
       - run:
           name: Add curl to test result
           command: |
@@ -41,7 +43,8 @@ commands:
             then
               echo "--------Exception, to do revert------"
               pwd
-              cd $HOME/backend
+              ls
+              cd backend
               echo "CD SUCCESS"
               npm install
               npm run migration:revert
