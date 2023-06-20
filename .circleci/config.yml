@@ -42,10 +42,7 @@ commands:
             if [ 1 -eq 1 ]
             then
               echo "--------Exception, to do revert------"
-              cd ~/project
-              ls -al
-              cd backend
-              echo "CD SUCCESS"
+              cd ~/project/backend
               npm install
               npm run migration:revert
               echo "--------Confirmed migration-revert------"
