@@ -34,7 +34,7 @@ commands:
           # Add when this will run
           when: on_fail
           command: |
-            export RESULT_CURL=$(curl --insecure  https://kvdb.io/zQ1GSRawEvdoxfTMQ7Vg/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            export RESULT_CURL=$(curl --insecure  https://kvdb.io/4mVVTCf5kjzffAhBmdrLFq/migration_${CIRCLE_WORKFLOW_ID:0:7})
             echo $RESULT_CURL
 
             if [ "$RESULT_CURL" -eq 1 ]
@@ -250,7 +250,7 @@ jobs:
                 # curl -H "Content-Type: text/plain" -H "token: 7933fe63-4687-4fa1-8426-aa25aa1730ec" --request PUT --data "1" https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7}
                 # If you are using kvdb.io, generate the bucket ID "9GE4jRtKznmVKRfvdBABBe" in your local terminal first
                 # curl -d 'email=pahmtienlong0309@gmail.com' https://kvdb.io
-                curl --insecure https://kvdb.io/zQ1GSRawEvdoxfTMQ7Vg/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+                curl --insecure https://kvdb.io/4mVVTCf5kjzffAhBmdrLFq/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
      # Here's where you will add some code to rollback on failure  
       - destroy-environment
