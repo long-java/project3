@@ -43,7 +43,7 @@ commands:
             then
               echo "--------Exception, to do revert------"
               pwd
-              ls
+              ls -al
               cd backend
               echo "CD SUCCESS"
               npm install
